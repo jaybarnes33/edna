@@ -1,67 +1,79 @@
+"use client";
 import React from "react";
 import { Card, CardContent, CardTitle } from "../ui/card";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
 const Process = () => {
   const processes = [
     {
       title: "Research",
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla purus
-          arcu, varius eget velit non, laoreet imperdiet orci. Mauris ultrices
-          eget lorem ac vestibulum. Suspendis imperdiet`,
+      content: `I begin by conducting thorough user research, competitor analysis, and gathering requirements. This helps understand user needs, market trends, and project objectives to create a solid foundation for the design process.`,
     },
     {
       title: "Analyze",
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla purus
-            arcu, varius eget velit non, laoreet imperdiet orci. Mauris ultrices
-            eget lorem ac vestibulum. Suspendis imperdiet`,
+      content: `Using the research insights, I identify user pain points, create user personas, and map out user journeys. This analysis phase helps prioritize features and establish clear design objectives that align with business goals.`,
     },
     {
       title: "Design",
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla purus
-            arcu, varius eget velit non, laoreet imperdiet orci. Mauris ultrices
-            eget lorem ac vestibulum. Suspendis imperdiet`,
+      content: `I create wireframes and interactive prototypes, iterating through multiple design solutions. Each design decision is based on user feedback, usability principles, and modern design trends while maintaining brand consistency.`,
     },
     {
       title: "Launch",
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla purus arcu, varius eget velit non, laoreet imperdiet orci. Mauris ultrices eget lorem ac vestibulum. Suspendis imperdiet`,
+      content: `After thorough testing and refinement, I prepare the final design assets and documentation. I work closely with development teams to ensure pixel-perfect implementation and provide post-launch support for any adjustments needed.`,
     },
   ];
   return (
-    <section className="py-12 sm:py-20 bg-[#F0F1F3]">
+    <section id="process" className="py-12 sm:py-20 bg-[#F0F1F3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
-          <div className="space-y-4 text-center md:text-left">
+          <motion.div
+            className="space-y-4 text-center md:text-left"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <h1 className="text-3xl sm:text-4xl font-bold">Work Process</h1>
             <div className="space-y-4 text-sm sm:text-base text-gray-600">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                purus arcu, varius eget velit non, laoreet imperdiet orci.
-                Mauris ultrices eget lorem ac vestibulum. Suspendis imperdiet,
+                My design process is structured yet flexible, ensuring every
+                project is approached with both creativity and strategic
+                thinking. I follow a proven methodology that delivers consistent
+                results while adapting to each project&apos;s unique
+                requirements.
               </p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                purus
+                Through continuous collaboration and iteration, I transform
+                complex challenges into intuitive, user-friendly solutions that
+                delight users and achieve business objectives.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {processes.map((item, index) => (
-              <Card
+              <motion.div
                 key={item.title}
-                className={clsx([
-                  "bg-white shadow-sm rounded-xl p-4 sm:p-5 space-y-3",
-                  index % 2 !== 0 && "sm:mt-4",
-                ])}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <CardTitle className="text-lg sm:text-xl">
-                  {item.title}
-                </CardTitle>
-                <CardContent className="p-0 text-sm sm:text-base text-gray-600">
-                  {item.content}
-                </CardContent>
-              </Card>
+                <Card
+                  className={clsx([
+                    "bg-white shadow-sm rounded-xl p-4 sm:p-5 space-y-3",
+                    index % 2 !== 0 && "sm:mt-4",
+                  ])}
+                >
+                  <CardTitle className="text-lg sm:text-xl">
+                    {item.title}
+                  </CardTitle>
+                  <CardContent className="p-0 text-sm sm:text-base text-gray-600">
+                    {item.content}
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -9,17 +9,24 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
-    "home",
-    "about",
-    "process",
-    "portfolio",
-    "blog",
-    "services",
-    "contacts",
+    { name: "home", href: "#home" },
+    { name: "about", href: "#about" },
+    { name: "process", href: "#process" },
+    { name: "designs", href: "#designs" },
   ];
 
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    const element = document.querySelector(href);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <nav className="relative px-4 sm:px-6 lg:px-8">
+    <nav className="fixed z-[9999] top-0 left-0 right-0 bg-neutral-50/95 backdrop-blur-sm  px-4 sm:px-6 lg:px-8">
       <div className="flex flex-row justify-between items-center py-4 max-w-7xl mx-auto">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold">Emerald Edna</h1>
@@ -29,11 +36,12 @@ const Header = () => {
         <div className="hidden md:flex flex-row gap-4 capitalize">
           {links.map((link) => (
             <Link
-              key={link}
-              href={`/${link}`}
-              className="hover:text-purple-500 transition-colors"
+              key={link.name}
+              href={link.href}
+              className="hover:text-purple-500 transition-colors cursor-pointer"
+              onClick={(e) => handleClick(e, link.href)}
             >
-              {link}
+              {link.name}
             </Link>
           ))}
         </div>
@@ -50,16 +58,16 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden z-50">
+        <div className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden">
           <div className="flex flex-col p-4 space-y-3">
             {links.map((link) => (
               <Link
-                key={link}
-                href={`/${link}`}
-                className="capitalize hover:text-purple-500 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                key={link.name}
+                href={link.href}
+                className="capitalize hover:text-purple-500 transition-colors cursor-pointer"
+                onClick={(e) => handleClick(e, link.href)}
               >
-                {link}
+                {link.name}
               </Link>
             ))}
           </div>
