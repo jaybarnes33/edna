@@ -57,23 +57,16 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {socials.map((social, index) => (
-            <motion.div
+          {socials.map((social) => (
+            <Link
               key={social.name}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
+              className="hover:bg-purple-500 hover:text-white p-2 rounded-xl transition-colors"
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Link
-                className="hover:bg-purple-500 hover:text-white p-2 rounded-xl transition-colors"
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.icon}
-              </Link>
-            </motion.div>
+              {social.icon}
+            </Link>
           ))}
         </motion.div>
       </motion.div>
